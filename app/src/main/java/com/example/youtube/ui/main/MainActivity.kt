@@ -42,4 +42,5 @@ class MainActivity : BaseActivity() {
         intent.putExtra("description", item.snippet.description)
         startActivity(intent)
     }
+
 }

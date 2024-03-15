@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.youtube.data.model.BaseResponse
-import com.example.youtube.databinding.ItemDetailBinding
+import com.example.youtube.databinding.ItemPlaylistBinding
 
 class MainAdapter (private val onClick:(BaseResponse.Item)->Unit):
     ListAdapter<BaseResponse.Item, PlaylistsViewHolder>(
         YouTubeDiffCallback()
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaylistsViewHolder {
-        return PlaylistsViewHolder(ItemDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false), onClick)
+        return PlaylistsViewHolder(ItemPlaylistBinding.inflate(LayoutInflater.from(parent.context), parent, false), onClick)
     }
 
     override fun onBindViewHolder(holder: PlaylistsViewHolder, position: Int) {
@@ -23,10 +23,10 @@ class MainAdapter (private val onClick:(BaseResponse.Item)->Unit):
 }
 
 class PlaylistsViewHolder(
-    private val binding: ItemDetailBinding,
+    private val binding: ItemPlaylistBinding,
     private val onClick: (BaseResponse.Item) -> Unit
 ): RecyclerView.ViewHolder(binding.root){
-    fun bind(item: BaseResponse.Item) = with(binding){
+    fun bind(item: BaseResponse.Item)= with(binding){
         playlistName.text = item.snippet.title
         tvCount.text = item.contentDetails.itemCount.toString().plus(" video series")
         itemView.setOnClickListener { onClick.invoke(item) }
